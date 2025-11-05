@@ -4,6 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Klassieke Adventskalender — December editie</title>
+  <!-- App-icoon (homescreen iPhone/iPad) -->
+  <link rel="apple-touch-icon" sizes="180x180" href="img/advent-icon-180.png">
+
+  <!-- (optioneel) favicon voor browser tab -->
+  <link rel="icon" type="image/png" href="img/advent-icon-180.png">
 <style>
   :root{
     --christmas-red:#d62839;
