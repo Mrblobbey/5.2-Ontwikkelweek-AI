@@ -4,129 +4,265 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kerstspel Portal — Vind de Kerstman!</title>
+
 <style>
-body {
-  margin: 0;
-  font-family: 'Georgia', serif;
-  background: linear-gradient(to bottom, #001f3f, #003366);
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  min-height: 100vh;
-}
-h1 {
-  text-align:center;
-  margin-bottom: 10px;
-  color:#ffd700;
-  text-shadow:2px 2px 5px #000;
-}
-.menu {
-  display:flex; flex-wrap:wrap; justify-content:center; gap:15px; margin:20px;
-}
-.menu button {
-  padding:10px 20px;
-  font-size:1rem;
-  cursor:pointer;
-  border-radius:8px;
-  border:none;
-  background:#f48b73;
-  color:#fff;
-  transition:0.2s;
-}
-.menu button:hover { background:#ffb347; }
+  body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background: linear-gradient(to bottom, #0a2a4c, #001f3f);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    min-height: 100vh;
+  }
 
-.controls {
-  display:flex;
-  justify-content:center;
-  gap:20px;
-  margin-bottom:10px;
-}
-.reset-btn {
-  padding:5px 10px;
-  cursor:pointer;
-  border-radius:5px;
-  border:none;
-  background:#f48b73;
-  color:#fff;
-}
-.reset-btn:hover { background:#ffb347; }
-.highscore {
-  font-size:1rem;
-  color:#ffd700;
-  align-self:center;
-}
+  h1 {
+    text-align:center;
+    margin-bottom: 10px;
+    color:#ffd700;
+    text-shadow: 2px 2px 8px #000;
+    font-size: 2.8rem;
+  }
 
-.game {
-  display:none;
-  margin-top:20px;
-  position:relative;
-  width:100%;
-  max-width:1000px;
-  text-align:center;
-}
+  .menu {
+    display:flex; flex-wrap:wrap; justify-content:center; gap:15px; margin:20px 0;
+  }
 
-/* Vakjes */
-#gameBoard {
-  display:grid;
-  justify-content: center;
-  grid-template-columns: repeat(5, 80px);
-  grid-template-rows: repeat(5, 80px);
-  gap:10px;
-  margin:0 auto;
-}
-.cell {
-  width:80px;
-  height:80px;
-  background:#b30000;
-  border-radius:10px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:2rem;
-  cursor:pointer;
-  transition:transform 0.2s;
-  position:relative;
-}
-.cell:hover { transform:scale(1.1); }
+  .menu button {
+    padding:12px 25px;
+    font-size:1.1rem;
+    cursor:pointer;
+    border-radius:12px;
+    border:none;
+    background: linear-gradient(135deg, #f44336, #ff7961);
+    color:#fff;
+    font-weight:bold;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transition:0.3s;
+  }
 
-/* Memory */
-#memoryBoard {
-  display:grid;
-  justify-content: center;
-  grid-template-columns: repeat(4, 80px);
-  grid-template-rows: repeat(4, 80px);
-  gap:10px;
-  margin:0 auto;
-}
-.card {
-  width:80px;
-  height:80px;
-  background:#b30000;
-  border-radius:10px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:2rem;
-  cursor:pointer;
-  color:#fff;
-}
+  .menu button:hover {
+    background: linear-gradient(135deg, #ff7961, #f44336);
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+  }
 
-/* Pong */
-#pongCanvas {
-  background:#004400;
-  border:2px solid #fff;
-  display:block;
-  margin:0 auto;
-}
+  .controls {
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    margin-bottom:10px;
+    align-items:center;
+  }
 
-.message { margin-top:15px; font-size:1.2rem; text-align:center; }
+  .reset-btn {
+    padding:8px 15px;
+    cursor:pointer;
+    border-radius:8px;
+    border:none;
+    background: linear-gradient(135deg, #f48b73, #ffb347);
+    color:#fff;
+    font-weight:bold;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+    transition:0.3s;
+  }
+
+  .reset-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.4);
+  }
+
+  .highscore {
+    font-size:1.2rem;
+    color:#ffd700;
+    text-shadow: 1px 1px 2px #000;
+  }
+
+  .game {
+    display:none;
+    margin-top:20px;
+    position:relative;
+    width:100%;
+    max-width:1000px;
+    text-align:center;
+  }
+
+  /* Vakjes Klikspel */
+  #gameBoard {
+    display:grid;
+    justify-content:center;
+    grid-template-columns: repeat(5, 90px);
+    grid-template-rows: repeat(5, 90px);
+    gap:12px;
+    margin:0 auto;
+  }
+
+  .cell {
+    width:90px;
+    height:90px;
+    background: linear-gradient(145deg, #c62828, #b71c1c);
+    border-radius:15px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:2.5rem;
+    cursor:pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    transition: transform 0.2s, background 0.3s;
+  }
+
+  .cell:hover { 
+    transform:scale(1.15); 
+    background: linear-gradient(145deg, #d32f2f, #e53935);
+  }
+
+  /* Memory Game */
+  #memoryBoard {
+    display:grid;
+    justify-content:center;
+    grid-template-columns: repeat(4, 90px);
+    grid-template-rows: repeat(4, 90px);
+    gap:12px;
+    margin:0 auto;
+  }
+
+  .card {
+    width:90px;
+    height:90px;
+    background: linear-gradient(145deg, #c62828, #b71c1c);
+    border-radius:15px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:2.5rem;
+    cursor:pointer;
+    color:#fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    transition: transform 0.2s, background 0.3s;
+  }
+
+  .card:hover { transform: scale(1.1); background: linear-gradient(145deg, #d32f2f, #e53935); }
+
+  /* Pong */
+  #pongCanvas {
+    background: #004d00;
+    border: 3px solid #ffd700;
+    border-radius: 15px;
+    display:block;
+    margin:0 auto;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  }
+
+  .message {
+    margin-top:15px;
+    font-size:1.3rem;
+    text-align:center;
+    color:#ffd700;
+    text-shadow: 1px 1px 2px #000;
+  }
+
+  .back-button {
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  .menu-button {
+    display: inline-block;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(135deg, #4caf50, #81c784);
+    border-radius: 12px;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transition: 0.3s;
+  }
+
+  .menu-button:hover {
+    background: linear-gradient(135deg, #81c784, #4caf50);
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+  }
+
+  /* --- Mobiel responsive --- */
+  @media (max-width: 768px){
+    h1 {
+      font-size: 2rem;
+    }
+
+    .menu button, .menu-button {
+      padding: 10px 18px;
+      font-size: 1rem;
+    }
+
+    .reset-btn {
+      padding: 6px 12px;
+      font-size: 0.95rem;
+    }
+
+    #gameBoard, #memoryBoard {
+      grid-template-columns: repeat(5, 60px);
+      grid-template-rows: repeat(5, 60px);
+      gap: 8px;
+    }
+
+    .cell, .card {
+      width: 60px;
+      height: 60px;
+      font-size: 1.8rem;
+    }
+
+    #pongCanvas {
+      width: 100%;
+      height: auto;
+      max-height: 300px;
+    }
+  }
+
+  @media (max-width: 480px){
+    #gameBoard, #memoryBoard {
+      grid-template-columns: repeat(4, 50px);
+      grid-template-rows: repeat(4, 50px);
+      gap: 6px;
+    }
+
+    .cell, .card {
+      width: 50px;
+      height: 50px;
+      font-size: 1.5rem;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+    }
+  }
+
+  /* Pong touch-buttons */
+  #pongControls button {
+    padding: 8px 16px;
+    font-size: 1.2rem;
+    margin: 2px;
+    border-radius: 8px;
+    border: none;
+    background: linear-gradient(135deg, #4caf50, #81c784);
+    color: white;
+    font-weight: bold;
+  }
+  #pongControls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
 </style>
 </head>
 <body>
 
-<h1>🎄 Vind de Kerstman! 🎅</h1>
+<h1>🎄 Kerst Mini Games! 🎅</h1>
 
 <div class="menu">
   <button onclick="startGame(0)">🏠 Startmenu</button>
@@ -140,22 +276,33 @@ h1 {
   <div class="highscore" id="highscoreDisplay">🏆 Highscore: -</div>
 </div>
 
+<!-- Startmenu -->
 <div id="startMenu" class="game" style="display:block;">
-  <p>Kies één van de spellen en probeer de Kerstman te vinden of speel Pong! 🎅</p>
+  <h2>🎄 Welkom bij het Kerstspel Portal!</h2>
+  <p>Kies één van de spellen hieronder en probeer de Memory Game of speel een potje Pong met een vriend!</p>
 </div>
 
+<!-- Vakjes Klikspel -->
 <div id="game1" class="game">
   <div id="gameBoard"></div>
   <div class="message" id="message1"></div>
 </div>
 
+<!-- Memory Game -->
 <div id="game2" class="game">
   <div id="memoryBoard"></div>
   <div class="message" id="message2"></div>
 </div>
 
+<!-- Pong -->
 <div id="game3" class="game">
   <canvas id="pongCanvas" width="1000" height="500"></canvas>
+  <div id="pongControls">
+    <button id="up1">⬆️</button>
+    <button id="down1">⬇️</button>
+    <button id="up2">⬆️</button>
+    <button id="down2">⬇️</button>
+  </div>
   <div class="message" id="message3"></div>
 </div>
 
@@ -188,7 +335,6 @@ resetBtn.addEventListener('click', ()=>{
   if(currentGame===3) setupPong(true);
 });
 
-/* Highscore helpers */
 function updateHighscore(key,value){
   let current = parseInt(localStorage.getItem(key)) || null;
   if(current===null || value<current){
@@ -299,8 +445,17 @@ function setupPong(reset=false){
     if(e.key==='ArrowDown') down2=false;
   }
 
+  // Touch controls
+  document.getElementById('up1').ontouchstart = () => up1=true;
+  document.getElementById('up1').ontouchend = () => up1=false;
+  document.getElementById('down1').ontouchstart = () => down1=true;
+  document.getElementById('down1').ontouchend = () => down1=false;
+  document.getElementById('up2').ontouchstart = () => up2=true;
+  document.getElementById('up2').ontouchend = () => up2=false;
+  document.getElementById('down2').ontouchstart = () => down2=true;
+  document.getElementById('down2').ontouchend = () => down2=false;
+
   function drawPaddle(x,y){
-    // Zuurstok paddle rood-wit
     for(let i=0;i<paddleHeight;i+=10){
       ctx.fillStyle=i%20===0?'#ff0000':'#ffffff';
       ctx.fillRect(x,y+i,paddleWidth,10);
@@ -345,6 +500,13 @@ function setupPong(reset=false){
 
   pongInterval=setInterval(()=>{ update(); draw(); },16);
 }
+
+// Startmenu standaard tonen
+startGame(0);
 </script>
+<div class="back-button">
+  <a href="index.php" class="menu-button">🎁 Terug naar Adventskalender</a>
+</div>
+
 </body>
 </html>

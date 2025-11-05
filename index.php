@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Klassieke Adventskalender — November editie</title>
+<title>Klassieke Adventskalender — December editie</title>
 <style>
   :root{
     --christmas-red:#d62839;
@@ -193,7 +193,8 @@
     box-shadow:0 26px 70px rgba(0,0,0,0.95);
     border-radius:22px;
     overflow:hidden;
-    background:radial-gradient(circle at top, rgba(255,255,255,0.12) 0, transparent 65%);
+    background: transparent;
+    z-index: 100;
   }
 
   .intro-door{
@@ -239,8 +240,7 @@
     width:14px;
     height:46px;
     border-radius:999px;
-    background:
-      radial-gradient(circle at 30% 20%, #fff 0, #ffe9aa 40%, #c28a2b 100%);
+    background: transparent;
     box-shadow:
       0 0 10px rgba(0,0,0,0.9),
       0 0 14px rgba(255,214,107,0.9);
@@ -271,11 +271,7 @@
     left:-6px;
     right:-6px;
     height:40px;
-    background:
-      radial-gradient(circle at 10% 100%, #ffffff 0, #ffffff 55%, transparent 75%),
-      radial-gradient(circle at 40% 100%, #ffffff 0, #ffffff 55%, transparent 75%),
-      radial-gradient(circle at 70% 100%, #ffffff 0, #ffffff 55%, transparent 75%),
-      radial-gradient(circle at 100% 100%, #ffffff 0, #ffffff 55%, transparent 75%);
+    background:transparent;
     border-radius:999px 999px 60% 60%;
     box-shadow:0 8px 18px rgba(0,0,0,0.7);
   }
@@ -666,6 +662,67 @@
     animation-iteration-count: infinite;
   }
 
+  .mini-games-link {
+  display: inline-block;
+  margin-top: 22px;
+  padding: 10px 26px;
+  border-radius: 999px;
+  background: linear-gradient(120deg, var(--christmas-red), var(--christmas-dark-red));
+  color: #fff7e6;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  box-shadow: 0 10px 20px rgba(214, 40, 57, 0.55);
+  transition: all 0.25s ease;
+}
+
+.mini-games-link:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(214, 40, 57, 0.7);
+}
+
+#startOverlay.zoom {
+  animation: overlayZoom 0.7s forwards;
+}
+
+/* Deel-knop wishlist */
+#wishlist-share {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(120deg, var(--christmas-green), var(--christmas-gold));
+  color: #fff7e6;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(15,123,79,0.55);
+  transition: all 0.25s ease;
+  margin-top: 8px;
+}
+
+#wishlist-share:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(15,123,79,0.7);
+}
+
+
+
+
+@keyframes overlayZoom {
+  0% {
+    transform: scale(1) translateZ(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.4) translateZ(0);
+    opacity: 0;
+  }
+}
   @keyframes fall {
     0% {
       transform: translate3d(0, -10vh, 0);
@@ -703,6 +760,124 @@
       justify-content:center;
     }
   }
+/* --- Mobiele optimalisatie extra --- */
+@media (max-width: 768px) {
+  body {
+    padding: 16px 10px;
+  }
+
+  h1 {
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+  }
+
+  #countdown {
+    font-size: 0.9rem;
+    padding: 12px 22px;
+    gap: 4px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .door-container {
+    padding-top: 120%; /* compacter */
+  }
+
+  .door-number {
+    font-size: clamp(1.8rem, 5vw, 2rem);
+  }
+
+  #wishlist-container {
+    padding: 16px 10px 12px;
+  }
+
+  #wishlist-container h2 {
+    font-size: 1.1rem;
+  }
+
+  #wishlist-input,
+  #wishlist-link {
+    padding: 7px 10px;
+    font-size: 0.9rem;
+  }
+
+  #wishlist-add,
+  #wishlist-share,
+  .mini-games-link {
+    font-size: 0.95rem;
+    padding: 8px 14px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .snowflake {
+    font-size: clamp(8px, 2vw, 14px);
+  }
+
+  /* Introductietekst kleiner maken */
+  .intro-text h2 {
+    font-size: clamp(1.4rem, 4vw, 1.8rem);
+  }
+
+  .intro-text p,
+  .intro-text span {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .door-container {
+    padding-top: 60%;
+    width: 48%;
+  }
+
+  .door-number {
+    font-size: 1.6rem;
+  }
+
+  #wishlist-container h2 {
+    font-size: 1rem;
+  }
+
+  #wishlist-input,
+  #wishlist-link {
+    padding: 6px 8px;
+    font-size: 0.85rem;
+  }
+
+  #wishlist-add,
+  #wishlist-share,
+  .mini-games-link {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+  }
+
+  .intro-text h2 {
+    font-size: clamp(1.2rem, 5vw, 1.5rem);
+  }
+
+  .intro-text p,
+  .intro-text span {
+    font-size: 0.8rem;
+  }
+}
+
+  
 </style>
 </head>
 <body>
@@ -744,14 +919,43 @@
     <input type="text" id="wishlist-link" placeholder="Link (optioneel)">
     <button id="wishlist-add">Toevoegen</button>
     <ul id="wishlist-items"></ul>
+    <button id="wishlist-share">🎁 Deel je lijstje</button>
   </div>
+  
 
+  <a href="kerstmanzoektocht.php" class="mini-games-link">🎅 Ga naar de Mini Games</a>
   <footer>Gemaakt met liefde — Fijne feestdagen! ✨</footer>
 </div>
 
 <script>
-// --- Kalender taken (dummy-teksten, kun je zelf kerstiger maken) ---
-const tasks = [...Array(24).keys()].map(i => `Dag ${i+1} taak 🎁`); 
+// --- Kalender taken (kerstopdrachten) ---
+const tasks = [
+  "Speel één van de minigames onderin de pagina 🌲",
+  "Zing een kerstliedje hardop — bonuspunten als iemand meedoet 🎶",
+  "Versier iets in huis met lichtjes of glitters ✨",
+  "Bak (of koop) iets lekkers en deel het met iemand 🍪",
+  "Maak een sneeuwvlok van papier ❄️",
+  "Vertel iemand waarom je blij bent dat die persoon in je leven is ❤️",
+  "Kijk een klassieker als 'Home Alone' of 'The Grinch' 🎥",
+  "Doneer iets aan een goed doel of geef iets wat je niet meer gebruikt 🎁",
+  "Maak een wandeling en geniet van de winterlucht 🌙",
+  "Schrijf drie dingen op waarvoor je dankbaar bent 🙏",
+  "Maak warme chocolademelk en versier het met slagroom ☕",
+  "Stuur een berichtje naar iemand die je lang niet hebt gesproken 📱",
+  "Luister bewust naar je favoriete kerstliedje 🎧",
+  "Schrijf vandaag een kerstkaart voor iemand die je waardeert 💌",
+  "Geef vandaag iemand een oprecht compliment 💬",
+  "Draag vandaag iets rood of glinsterends 💃",
+  "Versier je kamer met kerstlichtjes of kaarsjes 🕯️",
+  "Maak een sneeuwpop of teken er eentje als er geen sneeuw ligt ⛄",
+  "Vertel een kerstverhaal of verzin er zelf één 📖",
+  "Schrijf een wens voor het nieuwe jaar en stop hem in een potje 🪄",
+  "Doe vandaag iets aardigs zonder dat iemand het merkt 🤫",
+  "Zet je favoriete kerstfilm op met dekentjes en snacks 🎬",
+  "Bel een familielid of vriend en wens ze fijne feestdagen ☎️",
+  "Sluit het jaar af met een glimlach — Kerst is bijna hier! 🌟"
+];
+
 const calendar = document.getElementById("calendar");
 const doorSound = document.getElementById("doorSound");
 const bgMusic = document.getElementById("bgMusic");
@@ -761,55 +965,58 @@ const currentMonth = today.getMonth();
 const currentDay = today.getDate();
 let openedDays = JSON.parse(localStorage.getItem('openedDays')) || [];
 
+// --- Willekeurige volgorde van de dagen ---
+const days = Array.from({ length: 24 }, (_, i) => i + 1);
+for (let i = days.length - 1; i > 0; i--) {
+  const j = Math.floor(Math.random() * (i + 1));
+  [days[i], days[j]] = [days[j], days[i]];
+}
+
 // --- Sneeuw effect ---
-for(let i=0;i<50;i++){
+for (let i = 0; i < 50; i++) {
   const snow = document.createElement('div');
   snow.classList.add('snowflake');
-  snow.style.left = Math.random()*100 + 'vw';
-  snow.style.animationDuration = (Math.random()*10+5)+'s';
-  snow.style.animationDelay = Math.random()*10+'s';
+  snow.style.left = Math.random() * 100 + 'vw';
+  snow.style.animationDuration = (Math.random() * 10 + 5) + 's';
+  snow.style.animationDelay = Math.random() * 10 + 's';
   snow.innerHTML = '❄';
   document.body.appendChild(snow);
 }
 
 // --- Countdown tot kerst ---
 const countdownEl = document.getElementById('countdown');
-function updateCountdown(){
+
+function updateCountdown() {
   const now = new Date();
-  const christmas = new Date(now.getFullYear(),11,25);
+  const christmas = new Date(now.getFullYear(), 11, 25); // 25 december
   const diff = christmas - now;
+
   if (diff <= 0) {
     countdownEl.textContent = "Het is Kerst! 🎄";
     return;
   }
-  const days   = Math.floor(diff / (1000*60*60*24));
-  const hours  = Math.floor((diff / (1000*60*60)) % 24);
-  const mins   = Math.floor((diff / (1000*60)) % 60);
-  countdownEl.innerHTML = `Nog <span>${days} dagen</span>, <span>${hours} uur</span> en <span>${mins} minuten</span> tot Kerst`;
+
+  const daysLeft = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const mins = Math.floor((diff / (1000 * 60)) % 60);
+  const secs = Math.floor((diff / 1000) % 60); // seconden
+
+  countdownEl.innerHTML = `Nog <span>${daysLeft} dagen</span>, <span>${hours} uur</span>, <span>${mins} minuten</span> en <span>${secs} seconden</span> tot Kerst`;
 }
+
+// Update elke seconde
 updateCountdown();
-setInterval(updateCountdown, 60000);
+setInterval(updateCountdown, 1000);
 
-// --- Start overlay klik: grote deuren openen, dan wegfaden ---
-overlay.addEventListener('click',()=>{
-  if(overlay.classList.contains('opening')) return;
-  overlay.classList.add('opening');
-  bgMusic.volume=0.3;
-  bgMusic.play();
 
-  setTimeout(()=>{
-    overlay.classList.add('hidden');
-  }, 1300);
-});
-
-// --- Kalender genereren ---
-for(let dayNumber=1; dayNumber<=24; dayNumber++){
-  const task = tasks[dayNumber-1];
+// --- Kalender genereren met willekeurige volgorde ---
+days.forEach((dayNumber, i) => {
+  const task = tasks[dayNumber - 1];
   const box = document.createElement("div");
   box.classList.add("door-container");
-  const canOpen = (currentMonth===10 && currentDay>=dayNumber); // november = 10
-  if(!canOpen) box.classList.add("locked");
-  if(openedDays.includes(dayNumber)) box.classList.add("open");
+  const canOpen = (currentMonth === 10 && currentDay >= dayNumber); // november = 10
+  if (!canOpen) box.classList.add("locked");
+  if (openedDays.includes(dayNumber)) box.classList.add("open");
 
   box.innerHTML = `
     <div class="door left"></div>
@@ -818,91 +1025,147 @@ for(let dayNumber=1; dayNumber<=24; dayNumber++){
     <div class="task">${task}</div>
   `;
 
-  box.addEventListener("click",()=>{
-    if(!canOpen) return;
-    if(box.classList.contains("open")) return;
-
+  box.addEventListener("click", () => {
+    if (!canOpen || box.classList.contains("open")) return;
     box.classList.add("open");
-    doorSound.currentTime=0;
+    doorSound.currentTime = 0;
     doorSound.play();
 
     // Confetti-sparkles
-    for(let i=0;i<15;i++){
-      const c=document.createElement('div');
-      c.textContent='✨';
-      c.style.position='absolute';
-      c.style.left=Math.random()*100+'%';
-      c.style.top='0';
-      c.style.fontSize='1rem';
-      c.style.animation=`fall ${Math.random()*2+1}s linear`;
+    for (let i = 0; i < 15; i++) {
+      const c = document.createElement('div');
+      c.textContent = '✨';
+      c.style.position = 'absolute';
+      c.style.left = Math.random() * 100 + '%';
+      c.style.top = '0';
+      c.style.fontSize = '1rem';
+      c.style.animation = `fall ${Math.random() * 2 + 1}s linear`;
       box.appendChild(c);
-      setTimeout(()=>c.remove(),2500);
+      setTimeout(() => c.remove(), 2500);
     }
 
-    if(!openedDays.includes(dayNumber)){
+    if (!openedDays.includes(dayNumber)) {
       openedDays.push(dayNumber);
-      localStorage.setItem('openedDays',JSON.stringify(openedDays));
+      localStorage.setItem('openedDays', JSON.stringify(openedDays));
     }
   });
 
   calendar.appendChild(box);
-}
+});
 
 // --- Verlanglijst ---
-const wishlistInput=document.getElementById('wishlist-input');
-const wishlistLink=document.getElementById('wishlist-link');
-const wishlistAdd=document.getElementById('wishlist-add');
-const wishlistItems=document.getElementById('wishlist-items');
-let wishlist=JSON.parse(localStorage.getItem('wishlist')) || [];
+const wishlistInput = document.getElementById('wishlist-input');
+const wishlistLink = document.getElementById('wishlist-link');
+const wishlistAdd = document.getElementById('wishlist-add');
+const wishlistItems = document.getElementById('wishlist-items');
+let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 renderWishlist();
 
-wishlistAdd.addEventListener('click',()=>{
-  const item=wishlistInput.value.trim();
-  const link=wishlistLink.value.trim();
-  if(!item) return;
-  wishlist.push({item,link});
-  wishlistInput.value='';
-  wishlistLink.value='';
+wishlistAdd.addEventListener('click', () => {
+  const item = wishlistInput.value.trim();
+  const link = wishlistLink.value.trim();
+  if (!item) return;
+  wishlist.push({ item, link });
+  wishlistInput.value = '';
+  wishlistLink.value = '';
   saveWishlist();
   renderWishlist();
 });
 
-function renderWishlist(){
-  wishlistItems.innerHTML='';
-  wishlist.forEach((entry,index)=>{
-    const li=document.createElement('li');
-    const textSpan=document.createElement('span');
-    textSpan.textContent=entry.item;
+function renderWishlist() {
+  wishlistItems.innerHTML = '';
+  wishlist.forEach((entry, index) => {
+    const li = document.createElement('li');
+    const textSpan = document.createElement('span');
+    textSpan.textContent = entry.item;
     li.appendChild(textSpan);
 
-    if(entry.link){
-      const a=document.createElement('a');
-      a.href=entry.link;
-      a.target="_blank";
-      a.rel="noopener noreferrer";
-      a.textContent="link";
+    if (entry.link) {
+      const a = document.createElement('a');
+      a.href = entry.link;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      a.textContent = "link";
       li.appendChild(a);
     }
 
-    const delBtn=document.createElement('button');
-    delBtn.textContent='✕';
-    delBtn.addEventListener('click',()=>removeItem(index));
+    const delBtn = document.createElement('button');
+    delBtn.textContent = '✕';
+    delBtn.addEventListener('click', () => removeItem(index));
     li.appendChild(delBtn);
 
     wishlistItems.appendChild(li);
   });
 }
 
-function saveWishlist(){
-  localStorage.setItem('wishlist',JSON.stringify(wishlist));
+function saveWishlist() {
+  localStorage.setItem('wishlist', JSON.stringify(wishlist));
 }
 
-function removeItem(index){
-  wishlist.splice(index,1);
+function removeItem(index) {
+  wishlist.splice(index, 1);
   saveWishlist();
   renderWishlist();
 }
+
+overlay.addEventListener('click', () => {
+  if (overlay.classList.contains('opening')) return;
+
+  // 1. deuren openslaan
+  overlay.classList.add('opening'); 
+  bgMusic.volume = 0.3;
+  bgMusic.play();
+
+  // 2. na deuranimatie: inzoomen
+  setTimeout(() => {
+    overlay.classList.add('zoom'); // activeert overlay zoom
+  }, 1200);
+
+  // 3. na zoom: overlay verbergen en kalender tonen
+  setTimeout(() => {
+    overlay.classList.add('hidden');
+  }, 1900); // 1200 + 700ms
+});
+const wishlistShare = document.getElementById('wishlist-share');
+
+wishlistShare.addEventListener('click', () => {
+  if (wishlist.length === 0) {
+    alert("Je wishlist is leeg! Voeg eerst iets toe.");
+    return;
+  }
+
+  // JSON van wishlist omzetten in URL-safe string
+  const dataStr = encodeURIComponent(JSON.stringify(wishlist));
+  const shareUrl = `${window.location.origin}${window.location.pathname}?wishlist=${dataStr}`;
+
+  // Kopiëer naar clipboard
+  navigator.clipboard.writeText(shareUrl).then(() => {
+    alert("Je wishlist-link is gekopieerd! 🎉 Plak hem om te delen.");
+  }).catch(() => {
+    prompt("Kopieer deze link om te delen:", shareUrl);
+  });
+});
+
+// --- Bij het laden van de pagina: check of er wishlist-gegevens in URL staan ---
+const urlParams = new URLSearchParams(window.location.search);
+const sharedWishlist = urlParams.get('wishlist');
+if (sharedWishlist) {
+  try {
+    const importedList = JSON.parse(decodeURIComponent(sharedWishlist));
+    if (Array.isArray(importedList)) {
+      wishlist = importedList;
+      saveWishlist();
+      renderWishlist();
+      alert("Je bekijkt een gedeeld wishlistje! 🎁");
+    }
+  } catch (e) {
+    console.error("Kon gedeelde wishlist niet laden:", e);
+  }
+}
+
+
 </script>
+
 
 </body>
 </html>
